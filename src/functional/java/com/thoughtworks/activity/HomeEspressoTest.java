@@ -1,18 +1,20 @@
-package com.example.activity;
+package com.thoughtworks.activity;
 
-import com.example.R;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
+
+import com.thoughtworks.R;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @LargeTest
-public class DeckardEspressoTest extends ActivityInstrumentationTestCase2<DeckardActivity> {
+public class HomeEspressoTest extends ActivityInstrumentationTestCase2<HomeActivity> {
 
-    public DeckardEspressoTest() {
-        super(DeckardActivity.class);
+    public HomeEspressoTest() {
+        super(HomeActivity.class);
     }
 
     @Override

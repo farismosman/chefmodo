@@ -1,4 +1,4 @@
-package com.example.activity;
+package com.thoughtworks.activity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +10,10 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = "src/main/AndroidManifest.xml", emulateSdk = 18)
-public class DeckardActivityTest {
+public class HomeActivityTest {
 
     @Test
     public void testSomething() throws Exception {
-        assertTrue(Robolectric.buildActivity(DeckardActivity.class).create().get() != null);
+        assertTrue(Robolectric.buildActivity(HomeActivity.class).create().get() != null);
     }
 }

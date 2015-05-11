@@ -1,14 +1,14 @@
-package com.example.activity;
+package com.thoughtworks.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.example.R;
+import com.thoughtworks.R;
 
-public class DeckardActivity extends Activity {
+public class HomeActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.deckard);
+    setContentView(R.layout.home);
   }
 }
