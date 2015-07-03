@@ -1,52 +1,86 @@
-# Chefmodo
-[![Build Status](https://secure.travis-ci.org/robolectric/deckard-gradle.png?branch=master)](http://travis-ci.org/robolectric/deckard-gradle)
+![build status](https://travis-ci.org/mutexkid/android-studio-robolectric-example.svg)
 
-## Setup
+## Android Studio Robolectric Test Example
+--- 
+This example project shows how to use robolectric, junit and assertJ with your gradle-based Android Studio projects.
+Examine the top-level build.gradle and app/build.gradle files for a new project configuration gradle boilerplate.
 
-*Note: These instructions assume you have a Java 1.8 [JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.*
+Make sure you're running the most recent version of Android Studio from the Canary Channel for this to work correctly (1.2 Beta as of today).
 
-To start a new Android project:
+### To set up from a new Android Studio Project: 
 
-1. Install [Android Studio 1.1.0](http://developer.android.com/sdk/index.html).
+your top-level build.gradle file should look like this: 
 
-2. Run the [Android SDK Manager](http://developer.android.com/tools/help/sdk-manager.html) and install
-`API 19` and `Build-tools 21.1.2`.
+```javascript
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.1.0'
+    }
+}
 
-3. Clone chefmodo from GitHub:
-    ```bash
-    git clone https://github.com/farismosman/chefmodo.git
-    ```
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+```
 
-4. In the project directory you should be able to run the Robolectric tests:
+your app/build.gradle file should look like this: 
 
-    ```bash
-    ./gradlew clean test
-    ```
+```javascript
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
-5. You should also be able to run the Espresso tests:
+    defaultConfig {
+        applicationId "com.example.joshskeen.myapplication"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
 
-    ```bash
-    ./gradlew clean connectedAndroidTest
-    ```
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 
-    Note: Make sure to start an Emulator or connect a device first so the test has something to connect to.
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.easytesting:fest:1.0.16'
+    testCompile 'com.squareup:fest-android:1.0.8'
+    testCompile('org.robolectric:robolectric:3.0-rc2') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+}
+```
+
+2. Create directories matching src/test/java/ and add a package matching your project's packagename. eg src/test/java/com.example.joshskeen.myapplication
+ <img src="https://www.evernote.com/shard/s313/sh/d69d9f94-76cb-42ac-858f-b6f7da68a6fb/f8d5f3ca3223094317d895c78cae5103/deep/0/TestMyActivity.java----app----android-studio-robolectric-example------code-foo-bar-android-studio-robolectric-example----Android-Studio-(Beta)-0.8.4.png" width="600">
 
 
-## Android Studio Support
+4. click 'Sync Project with Gradle Files'
+ <img src="https://www.evernote.com/shard/s313/sh/75d04b22-0ef0-449e-b137-e65dd4948865/28376be9739b21ca941d8fb6a4eeda88/deep/0/README.md----MyApplication----My-Application------AndroidStudioProjects-MyApplication----Android-Studio-(Beta)-0.8.1.png" width="600">
 
-### Compatibility
-The project is designed to run against Android Studio 1.1.0 with
-"Unit Testing support" enabled in Studio's Gradle settings.
 
-### Importing
-Import the project into Android Studio by selecting 'Import Project' and selecting the project's `build.gradle`. When prompted, you can just pick the default gradle wrapper.
+ 
+5. Select "Unit Tests" under "Build Variants"
+ <img src="https://www.evernote.com/shard/s313/sh/560c4b5f-e70b-4800-b46f-bc1968618338/89c1e740e7134316961a103021daf1cb/deep/0/MyActivityTest.java---android-studio-robolectric-example------code-android-studio-robolectric-example-.png" width="600">
+ 
 
-### Running the Robolectric Test
-To run Robolectric tests (example can be found in HomeActivityTest) open Studio's
-"Build Variants" pane and change the "Test Artifact" to "Unit Tests". You can then run
-Robolectric tests using the JUnit test runner.
+5. ctrl + click on the test and select Run > MyActivityTest. Make sure you select "Gradle" test (rather than unit), indicated by the gradle icon as seen here: <img
+ src="https://www.evernote.com/shard/s313/sh/86389266-daed-4cce-a363-3c16ffc121b2/f33e967214e3177383b9874cd60c3d86/deep/0/Screenshot-4-7-15,-1-46-PM.png" width="600">
 
-### Running the Espresso Test
-To run Robolectric tests (example can be found in HomeEspressoTest) open Studio's
-"Build Variants" pane and change the "Test Artifact" to "Android Instrumentation Tests".
-You can then run Espresso tests using the Android test runner.
+
+4. Write Robolectric Tests! For more intel on how to write tests using robolectric + fest, check out [http://blog.bignerdranch.com/2583-testing-the-android-way/](http://blog.bignerdranch.com/2583-testing-the-android-way/)
+
+
