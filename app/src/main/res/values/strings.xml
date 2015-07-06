@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Chefmodo</string>
     <string name="home_activity_label">Home</string>
+    <string name="action_search">SEARCH</string>
 </resources>
