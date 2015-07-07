@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 public class HomeActivity extends Activity {
@@ -30,9 +31,13 @@ public class HomeActivity extends Activity {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count == 0) {
-                    menu.getItem(0).setEnabled(false);
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                MenuItem searchButton = menu.getItem(0);
+
+                if (charSequence.length() > 0) {
+                    searchButton.setEnabled(true);
+                } else {
+                    searchButton.setEnabled(false);
                 }
             }
 
@@ -48,8 +53,9 @@ public class HomeActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.home_menu, menu);
 
-        this.menu = menu;
+        menu.getItem(0).setEnabled(false);
 
+        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 }

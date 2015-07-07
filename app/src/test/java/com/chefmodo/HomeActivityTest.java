@@ -1,6 +1,7 @@
 package com.chefmodo;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -39,7 +40,9 @@ public class HomeActivityTest {
     public void shouldHaveSearchInTheActionBar(){
         Menu homeMenu = shadowOf(homeActivity).getOptionsMenu();
 
-        assertThat(homeMenu.getItem(0).getTitle().toString(), is("SEARCH"));
+        MenuItem searchButton = homeMenu.getItem(0);
+        assertThat(searchButton.getTitle().toString(), is("SEARCH"));
+        assertThat(homeMenu.getItem(0).isEnabled(), is(false));
     }
 
     @Test
