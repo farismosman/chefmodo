@@ -3,4 +3,5 @@
     <string name="app_name">Chefmodo</string>
     <string name="home_activity_label">Home</string>
     <string name="action_search">SEARCH</string>
+    <string name="search_hint">Search ingredients, recipes and flavours</string>
 </resources>

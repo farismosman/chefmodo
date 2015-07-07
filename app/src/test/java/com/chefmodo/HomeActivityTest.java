@@ -1,7 +1,7 @@
 package com.chefmodo;
 
 import android.view.Menu;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,10 +28,10 @@ public class HomeActivityTest {
 
     @Test
     public void shouldHaveAllUIComponents(){
-        TextView screenTitle = (TextView) homeActivity.findViewById(R.id.screen_title);
+        ImageView screenTitle = (ImageView) homeActivity.findViewById(R.id.screen_title);
 
         assertThat(homeActivity.findViewById(R.id.search_bar), is(notNullValue()));
-        assertThat(screenTitle.getText().toString(), is("Chefmodo"));
+        assertThat(screenTitle.getBackground(), is(notNullValue()));
     }
 
     @Test
