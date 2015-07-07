@@ -1,7 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="ChefmodoTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/ChefomodoActionBar</item>
+        <item name="android:actionMenuTextAppearance">@style/ChefmodoTextTheme</item>
 
     </style>
 
@@ -9,5 +11,17 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+
+    <style name="ChefomodoActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/casal</item>
+    </style>
+
+    <style name="ChefmodoTextTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+
 
 </resources>
