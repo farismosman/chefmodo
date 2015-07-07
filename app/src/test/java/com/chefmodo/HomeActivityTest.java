@@ -1,6 +1,7 @@
 package com.chefmodo;
 
 import android.view.Menu;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import org.junit.Before;
@@ -39,5 +40,21 @@ public class HomeActivityTest {
         Menu homeMenu = shadowOf(homeActivity).getOptionsMenu();
 
         assertThat(homeMenu.getItem(0).getTitle().toString(), is("SEARCH"));
+    }
+
+    @Test
+    public void shouldDisableSearchButtonWhenSearchFieldIsEmpty() throws Exception {
+        ((EditText) homeActivity.findViewById(R.id.search_bar)).setText("");
+        Menu homeMenu = shadowOf(homeActivity).getOptionsMenu();
+
+        assertThat(homeMenu.getItem(0).isEnabled(), is(false));
+    }
+
+    @Test
+    public void shouldEnableSearchButtonWhenSearchFieldIsNotEmpty() throws Exception {
+        ((EditText) homeActivity.findViewById(R.id.search_bar)).setText("I am searching");
+        Menu homeMenu = shadowOf(homeActivity).getOptionsMenu();
+
+        assertThat(homeMenu.getItem(0).isEnabled(), is(true));
     }
 }
