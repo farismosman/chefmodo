@@ -1,26 +1,31 @@
-package com.chefmodo;
+package com.chefmodo.homeActivity;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
-public class HomeActivity extends Activity {
+import com.chefmodo.R;
 
+public class SearchFragment extends Fragment {
     private Menu menu;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.search_fragment, container, false);
+        setHasOptionsMenu(true);
 
-        EditText searchField = (EditText) findViewById(R.id.search_bar);
-
+        EditText searchField = (EditText) view.findViewById(R.id.search_bar);
         searchField.addTextChangedListener(toggleSearchButton());
+
+        return view;
     }
 
     private TextWatcher toggleSearchButton() {
@@ -49,13 +54,13 @@ public class HomeActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.home_menu, menu);
 
         menu.getItem(0).setEnabled(false);
 
         this.menu = menu;
-        return super.onCreateOptionsMenu(menu);
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

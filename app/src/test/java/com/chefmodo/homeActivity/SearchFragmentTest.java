@@ -1,9 +1,12 @@
-package com.chefmodo;
+package com.chefmodo.homeActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.chefmodo.BuildConfig;
+import com.chefmodo.R;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +22,7 @@ import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, emulateSdk = 21)
-public class HomeActivityTest {
+public class SearchFragmentTest {
 
     private HomeActivity homeActivity;
 
@@ -29,7 +32,7 @@ public class HomeActivityTest {
     }
 
     @Test
-    public void shouldHaveAllUIComponents(){
+    public void shouldStartActivityWithTheCorrectFragment(){
         ImageView screenTitle = (ImageView) homeActivity.findViewById(R.id.screen_title);
 
         assertThat(homeActivity.findViewById(R.id.search_bar), is(notNullValue()));

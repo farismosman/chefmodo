@@ -2,6 +2,8 @@ package com.chefmodo;
 
 import android.content.Intent;
 
+import com.chefmodo.homeActivity.HomeActivity;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
