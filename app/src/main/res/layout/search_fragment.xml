@@ -18,7 +18,7 @@
         />
 
     <EditText
-        android:id="@+id/search_bar"
+        android:id="@+id/search_ingredient_box"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_centerVertical="true"

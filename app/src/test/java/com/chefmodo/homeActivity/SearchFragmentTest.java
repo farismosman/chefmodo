@@ -14,9 +14,11 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.fakes.RoboMenuItem;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.robolectric.Shadows.shadowOf;
 
@@ -35,7 +37,7 @@ public class SearchFragmentTest {
     public void shouldStartActivityWithTheCorrectFragment(){
         ImageView screenTitle = (ImageView) homeActivity.findViewById(R.id.screen_title);
 
-        assertThat(homeActivity.findViewById(R.id.search_bar), is(notNullValue()));
+        assertThat(homeActivity.findViewById(R.id.search_ingredient_box), is(notNullValue()));
         assertThat(screenTitle.getBackground(), is(notNullValue()));
     }
 
@@ -50,7 +52,7 @@ public class SearchFragmentTest {
 
     @Test
     public void shouldDisableSearchButtonWhenSearchFieldIsEmpty() throws Exception {
-        ((EditText) homeActivity.findViewById(R.id.search_bar)).setText("");
+        ((EditText) homeActivity.findViewById(R.id.search_ingredient_box)).setText("");
         Menu homeMenu = shadowOf(homeActivity).getOptionsMenu();
 
         assertThat(homeMenu.getItem(0).isEnabled(), is(false));
@@ -58,9 +60,25 @@ public class SearchFragmentTest {
 
     @Test
     public void shouldEnableSearchButtonWhenSearchFieldIsNotEmpty() throws Exception {
-        ((EditText) homeActivity.findViewById(R.id.search_bar)).setText("I am searching");
+        ((EditText) homeActivity.findViewById(R.id.search_ingredient_box)).setText("I am searching");
         Menu homeMenu = shadowOf(homeActivity).getOptionsMenu();
 
         assertThat(homeMenu.getItem(0).isEnabled(), is(true));
+    }
+
+    @Test
+    public void shouldStartTheSearchResultsFragmentWhenClickingSearchButton() throws Exception {
+        MenuItem searchButton = new RoboMenuItem() {
+            public int getItemId() {
+                return R.id.search_button;
+            }
+
+        };
+
+        ((EditText) homeActivity.findViewById(R.id.search_ingredient_box)).setText("I am searching");
+
+        homeActivity.onOptionsItemSelected(searchButton);
+
+        assertThat(homeActivity.findViewById(R.id.search_ingredient_box), is(nullValue()));
     }
 }

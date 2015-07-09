@@ -22,7 +22,7 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.search_fragment, container, false);
         setHasOptionsMenu(true);
 
-        EditText searchField = (EditText) view.findViewById(R.id.search_bar);
+        EditText searchField = (EditText) view.findViewById(R.id.search_ingredient_box);
         searchField.addTextChangedListener(toggleSearchButton());
 
         return view;
