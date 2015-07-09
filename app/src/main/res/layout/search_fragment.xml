@@ -26,9 +26,12 @@
         android:paddingLeft="16dp"
         android:textColorHint="@color/casal"
         android:drawableRight="@drawable/magnifying_glass"
-        android:drawablePadding="16dp"
+        android:drawablePadding="20dp"
         android:gravity="center_vertical"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:background="@drawable/apptheme_textfield_activated_holo_light"
+        android:backgroundTint="@color/casal"
+        android:singleLine="true" />
 
 
 </RelativeLayout>
