@@ -8,11 +8,16 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.chefmodo.R;
+import com.chefmodo.endpoints.RecipeService;
+
+import retrofit.RestAdapter;
 
 public class HomeActivity extends Activity {
 
+    private static String END_POINT = "http://localhost:8081";
     private FragmentManager fragmentManager = getFragmentManager();
     public static final String SEARCH_QUERY = "SearchQuery";
+    private RecipeService recipeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +45,20 @@ public class HomeActivity extends Activity {
         fragmentTransaction.commit();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setRecipeService(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
+
+    public RecipeService getRecipeService() {
+        if (recipeService == null) {
+            recipeService = new RestAdapter.Builder().
+                    setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setEndpoint(END_POINT)
+                    .build()
+                    .create(RecipeService.class);
+        }
+        return recipeService;
     }
 }
